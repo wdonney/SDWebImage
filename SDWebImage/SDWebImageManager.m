@@ -67,10 +67,14 @@
         return @"";
     }
 
+    NSArray *splitArray = [[url description] componentsSeparatedByString:@"?"];
+    NSString *strSplit = [splitArray firstObject];
+    NSURL *urlKey = [NSURL URLWithString:strSplit];
+    
     if (self.cacheKeyFilter) {
         return self.cacheKeyFilter(url);
     } else {
-        return url.absoluteString;
+        return urlKey.absoluteString;
     }
 }
 
